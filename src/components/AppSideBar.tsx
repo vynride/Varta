@@ -46,23 +46,21 @@ export function AppSidebar() {
     <Sidebar className="h-screen sticky top-0">
       <SidebarContent className="h-full overflow-y-auto shadow-2xl backdrop-blur-3xl rounded-md">
         <SidebarGroup>
-          <SidebarGroupLabel>
-            <div className="mt-14">
-              <Link
-                href="/"
-                className="text-4xl ml-5 font-bold font-mono text-zinc-950 hover:text-zinc-950/5"
-              >
-                Varta
-              </Link>
-            </div>
+          <SidebarGroupLabel className="pl-6 pt-10">
+            <Link
+              href="/"
+              className="block text-4xl py-2 font-bold font-mono text-zinc-950 hover:text-zinc-900"
+            >
+              Varta
+            </Link>
           </SidebarGroupLabel>
-          <SidebarGroupContent className="pt-20">
+          <SidebarGroupContent className="mt-20">
             <SidebarMenu>
               {items.map((item) => (
                 <SidebarMenuItem className="mb-4" key={item.title}>
                   <SidebarMenuButton
                     asChild
-                    className="text-lg font-mono font-semibold text-zinc-800 hover:text-zinc-800/80"
+                    className="text-lg font-mono font-semibold text-zinc-950 hover:text-gray-400"
                   >
                     <a href={item.url}>
                       <item.icon className="mr-1" />

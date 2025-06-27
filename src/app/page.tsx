@@ -4,8 +4,8 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="bg-gradient-to-br from-amber-400 via-blue-900 to-zinc-950 min-h-screen">
-      <div className="flex pt-8 justify-between items-center ml-9">
+    <div className="bg-gradient-to-br from-amber-900 via-blue-900 to-zinc-950 min-h-screen">
+      <div className="flex pt-7 justify-between items-center ml-8">
         <Link
           href="/"
           className="text-4xl font-bold font-mono text-zinc-950 hover:text-zinc-900"
