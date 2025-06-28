@@ -1,4 +1,4 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
+import { Home, Library, PartyPopper, Search } from "lucide-react";
 import Link from "next/link";
 
 import {
@@ -16,28 +16,23 @@ import {
 const items = [
   {
     title: "Home",
-    url: "#",
+    url: "/dashboard",
     icon: Home,
   },
   {
-    title: "Inbox",
-    url: "#",
-    icon: Inbox,
-  },
-  {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
-  },
-  {
     title: "Search",
-    url: "#",
+    url: "/dashboard/search",
     icon: Search,
   },
   {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
+    title: "Library",
+    url: "/dashboard/library",
+    icon: Library,
+  },
+  {
+    title: "Generate",
+    url: "/dashboard/generate",
+    icon: PartyPopper,
   },
 ];
 
@@ -62,10 +57,17 @@ export function AppSidebar() {
                     asChild
                     className="text-lg font-mono font-semibold text-zinc-950 hover:text-gray-400"
                   >
-                    <a href={item.url}>
-                      <item.icon className="mr-1" />
-                      <span>{item.title}</span>
-                    </a>
+                    {item.title === "Generate" ? (
+                      <a href={item.url}>
+                        <item.icon className="mr-1" />
+                        <span className="">{item.title}</span>
+                      </a>
+                    ) : (
+                      <a href={item.url}>
+                        <item.icon className="mr-1" />
+                        <span>{item.title}</span>
+                      </a>
+                    )}
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}

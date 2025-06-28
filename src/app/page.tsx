@@ -17,13 +17,13 @@ export default function Home() {
             variant="outline"
             className="text-zinc-200 text-lg font-mono bg-transparent border-none shadow-none hover:bg-transparent hover:text-zinc-200/90"
           >
-            <Link href="/">Login</Link>
+            <Link href="/dashboard">Login</Link>
           </Button>
           <Button
             variant="outline"
             className="bg-zinc-950 text-white text-lg font-mono mr-8 border-blue-600 border-2 hover:bg-zinc-900 hover:text-white/90"
           >
-            <Link href="/">Join Now</Link>
+            <Link href="/dashboard">Join Now</Link>
           </Button>
         </div>
       </div>
