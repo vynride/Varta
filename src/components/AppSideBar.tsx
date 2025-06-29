@@ -39,26 +39,30 @@ const items = [
 export function AppSidebar() {
   return (
     <Sidebar className="h-screen sticky top-0">
-      <SidebarContent className="h-full overflow-y-auto shadow-2xl backdrop-blur-3xl rounded-md">
+      <SidebarContent className="h-full overflow-y-auto bg-white/5 backdrop-blur-md border-r border-white/10">
         <SidebarGroup>
-          <SidebarGroupLabel className="pl-6 pt-10">
+          <SidebarGroupLabel className="pl-6 pt-8">
             <Link
               href="/"
-              className="block text-4xl py-2 font-bold font-mono text-zinc-950 hover:text-zinc-900"
+              className="block text-4xl py-2 font-bold font-mono bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-400 to-pink-500 hover:opacity-90 transition"
             >
               Varta
             </Link>
           </SidebarGroupLabel>
-          <SidebarGroupContent className="mt-20">
+
+          <SidebarGroupContent className="mt-16">
             <SidebarMenu>
               {items.map((item) => (
-                <SidebarMenuItem className="mb-4" key={item.title}>
+                <SidebarMenuItem key={item.title} className="mb-2">
                   <SidebarMenuButton
                     asChild
-                    className="text-lg font-mono font-semibold text-zinc-950 hover:text-gray-400"
+                    className="text-base font-mono font-semibold text-white/80 hover:text-white transition"
                   >
-                    <Link href={item.url} className="flex items-center gap-2">
-                      <item.icon className="mr-1" />
+                    <Link
+                      href={item.url}
+                      className="flex items-center gap-3 px-4 py-2 rounded-md hover:bg-white/10"
+                    >
+                      <item.icon className="w-5 h-5" />
                       <span>{item.title}</span>
                     </Link>
                   </SidebarMenuButton>

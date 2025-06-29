@@ -23,9 +23,9 @@ interface CurrentStory {
 export default function Dashboard() {
   const [stories, setStories] = useState<Story[]>([]);
   const [currentStory, setCurrentStory] = useState<CurrentStory>({
-    title: "",
+    title: "Play a Story!",
     author: "",
-    coverUrl: undefined,
+    coverUrl: "/default-cover.png",
     audioUrl: undefined,
   });
 
@@ -33,51 +33,63 @@ export default function Dashboard() {
     fetch("/api/stories")
       .then((res) => res.json())
       .then((data: Story[]) => {
-        console.log("Fetched stories:", data);
         setStories(data);
       })
       .catch(console.error);
   }, []);
 
   const playStory = async (story: Story) => {
+    const hasValidImage = story.image && story.image.startsWith("data:image");
+    const imageUrl = hasValidImage ? story.image : "/default-cover.png";
+
     setCurrentStory({
       title: story.title,
       author: "Unknown",
-      coverUrl: story.image,
+      coverUrl: imageUrl,
       audioUrl: undefined,
     });
 
-    const res = await fetch("/api/murf/stream", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ text: story.text }),
-    });
-    const blob = await res.blob();
-    const url = URL.createObjectURL(blob);
+    try {
+      const res = await fetch("/api/murf/stream", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: story.text }),
+      });
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
 
-    setCurrentStory((cs) => ({ ...cs, audioUrl: url }));
+      setCurrentStory((cs) => ({ ...cs, audioUrl: url }));
+    } catch (error) {
+      console.error("Error playing story:", error);
+    }
   };
 
   return (
-    <div className="grid grid-cols-[250px_1fr] grid-rows-[1fr_auto] h-screen w-screen bg-gradient-to-br from-amber-900 via-blue-900 to-zinc-950 font-mono text-white overflow-hidden">
+    <div className="grid grid-cols-[250px_1fr] grid-rows-[1fr_auto] h-screen w-screen bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] font-mono text-white overflow-hidden">
       <SidebarProvider>
-        <div className="overflow-y-auto bg-white/5 border-r border-white/10">
+        <aside className="overflow-y-auto bg-white/5 backdrop-blur-md border-r border-white/10">
           <AppSidebar />
-        </div>
+        </aside>
       </SidebarProvider>
 
-      <main className="overflow-y-auto p-6">
-        <h1 className="text-3xl font-bold mb-6">Your Stories</h1>
+      <main className="overflow-y-auto p-6 pb-32">
+        <h1 className="text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-400 to-pink-500 drop-shadow-lg mb-6">
+          Your Stories
+        </h1>
+
         {stories.length === 0 ? (
-          <p className="text-zinc-900">Loading Stories!</p>
+          <p className="text-white/70">We ❤️ Stories...</p>
         ) : (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
             {stories.map((s) => (
               <MusicCard
                 key={s._id}
                 title={s.title}
-                // author="Unknown"
-                coverUrl={s.image}
+                coverUrl={
+                  s.image && s.image.startsWith("data:image")
+                    ? s.image
+                    : "/default-cover.png"
+                }
                 onSelect={() => playStory(s)}
               />
             ))}
@@ -85,14 +97,13 @@ export default function Dashboard() {
         )}
       </main>
 
-      <div className="col-start-2 z-80">
+      <footer className="col-start-2 z-80">
         <Player
           audioUrl={currentStory.audioUrl}
           title={currentStory.title}
-          // author={currentStory.author}
           coverUrl={currentStory.coverUrl}
         />
-      </div>
+      </footer>
     </div>
   );
 }

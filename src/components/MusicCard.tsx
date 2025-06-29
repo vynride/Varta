@@ -17,24 +17,31 @@ export default function MusicCard({
   return (
     <div
       onClick={onSelect}
-      className="cursor-pointer flex flex-col w-full max-w-[180px] h-[220px] rounded-xl overflow-hidden bg-black backdrop-blur-md border border-white/20 hover:shadow-xl transition"
+      className="cursor-pointer flex flex-col w-full max-w-[160px] rounded-xl overflow-hidden bg-black/30 backdrop-blur-md border border-white/10 hover:shadow-xl hover:scale-105 transition-transform duration-300"
     >
-      <div className="w-full h-[160px]">
+      <div className="w-full h-[140px]">
         {valid ? (
           <img
             src={coverUrl}
             alt={title}
-            className="object-cover w-full h-full rounded-t-xl"
+            className="object-cover w-full h-full"
           />
         ) : (
-          <div className="w-full h-full bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center text-white text-sm">
-            No Image
+          <div className="w-full h-full bg-gradient-to-br from-indigo-600 to-purple-700 flex flex-col items-center justify-center text-slate-200 text-xs font-semibold gap-1">
+            🎵
+            <span>No Cover</span>
           </div>
         )}
       </div>
-      <div className="p-2 flex-1 flex flex-col justify-center">
-        <p className="text-white font text-wrap truncate">{title}</p>
-        <p className="text-white text-sm truncate">{author}</p>
+      <div className="px-3 py-2 flex flex-col text-center gap-1">
+        <p className="text-slate-100 text-sm font-medium leading-snug line-clamp-2">
+          {title}
+        </p>
+        {author && (
+          <p className="text-slate-400 text-xs truncate">
+            {author}
+          </p>
+        )}
       </div>
     </div>
   );
