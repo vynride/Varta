@@ -78,7 +78,11 @@ export default function Dashboard() {
         </h1>
 
         {stories.length === 0 ? (
-          <p className="text-white/70">We ❤️ Stories...</p>
+          <div>
+          <p className="text-white/70">We ❤️ Stories!</p><br />
+          <p className="text-white/70">Loading...</p>
+          </div>
+
         ) : (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
             {stories.map((s) => (
