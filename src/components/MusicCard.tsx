@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 interface MusicCardProps {
   title: string;
   author?: string;
@@ -23,7 +21,7 @@ export default function MusicCard({
     >
       <div className="w-full h-[160px]">
         {valid ? (
-          <Image
+          <img
             src={coverUrl}
             alt={title}
             className="object-cover w-full h-full rounded-t-xl"

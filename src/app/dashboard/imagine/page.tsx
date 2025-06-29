@@ -15,7 +15,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { toast } from "sonner";
-import Image from "next/image";
 
 export default function ImaginePage() {
   const [title, setTitle] = useState("");
@@ -111,7 +110,7 @@ export default function ImaginePage() {
             <p className="text-white font-mono text-lg mb-2">Thumbnail Preview</p>
             <div className="w-80 h-80 border border-zinc-700 rounded-xl overflow-hidden shadow-lg bg-zinc-800/20 backdrop-blur-2xl">
               {image ? (
-                <Image
+                <img
                   src={image}
                   alt="Generated thumbnail"
                   className="w-full h-full object-cover"
