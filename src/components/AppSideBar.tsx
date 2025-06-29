@@ -1,4 +1,4 @@
-import { Home, Library, PartyPopper, Search } from "lucide-react";
+import { Home, Library, Search, Sparkle } from "lucide-react";
 import Link from "next/link";
 
 import {
@@ -30,9 +30,9 @@ const items = [
     icon: Library,
   },
   {
-    title: "Generate",
-    url: "/dashboard/generate",
-    icon: PartyPopper,
+    title: "Imagine",
+    url: "/dashboard/imagine",
+    icon: Sparkle,
   },
 ];
 
@@ -57,17 +57,10 @@ export function AppSidebar() {
                     asChild
                     className="text-lg font-mono font-semibold text-zinc-950 hover:text-gray-400"
                   >
-                    {item.title === "Generate" ? (
-                      <a href={item.url}>
-                        <item.icon className="mr-1" />
-                        <span className="">{item.title}</span>
-                      </a>
-                    ) : (
-                      <a href={item.url}>
-                        <item.icon className="mr-1" />
-                        <span>{item.title}</span>
-                      </a>
-                    )}
+                    <Link href={item.url} className="flex items-center gap-2">
+                      <item.icon className="mr-1" />
+                      <span>{item.title}</span>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}

@@ -1,6 +1,18 @@
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSideBar";
 import Player from "@/components/Player";
+// import { NextResponse } from "next/server";
+// import { connectToDatabase } from "@/lib/mongoose";
+// import { Story } from "@/models/Story";
+
+// export async function GET() {
+//   await connectToDatabase();
+//   const stories = await Story.find().sort({ createdAt: -1 });
+//   return NextResponse.json(stories);
+// }
+
+// const res = await fetch("/api/stories");
+// const stories = await res.json();
 
 export default function Library() {
   return (
