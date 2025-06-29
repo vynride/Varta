@@ -11,11 +11,10 @@ export default function Search() {
           <AppSidebar />
         </SidebarProvider>
       </div>
-        <Input className="w-[300px] text-mono mt-10 ml-8 text-zinc-300 border-zinc-900 border-2 selection:border-zinc-700"></Input>
+      <Input className="w-[300px] text-mono mt-10 ml-8 text-zinc-300 border-zinc-900 border-2 selection:border-zinc-700"></Input>
       <div>
         <Player />
       </div>
     </div>
   );
 }
-
